@@ -1,17 +1,16 @@
-import React from 'react';
 import styles from '../styles/ProductCard.module.css';
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onRemove }) => {
+  const { id, name, price, inStock } = product;
+
+  const className = `${styles.card} ${!inStock ? `${styles.outOfStockClass} outOfStockClass` : ''}`;
+
   return (
-    <div className>
-      {/* TODO: Apply conditional class to <div> above for out-of-stock items */}
-      
-      {/* TODO: Display product name */}
-
-      {/* TODO: Display product price */}
-
-      {/* TODO: Show if the product is in stock or out of stock */}
-      
+    <div className={className}>
+      <h2>{name}</h2>
+      <p>${price}</p>
+      <p>{inStock ? 'In Stock' : 'Out of Stock'}</p>
+      <button onClick={() => onRemove(id)}>Remove</button>
     </div>
   );
 };
